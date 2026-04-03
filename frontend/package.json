@@ -1,0 +1,100 @@
+{
+  "name": "bioml-automl",
+  "version": "1.0.0",
+  "description": "Bioinformatics AutoML Desktop Application",
+  "author": "Abdul Rehman Ikram",
+  "main": "electron.js",
+  "homepage": "./",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/se7en69/Bioinformatics_Automl_Studio.git"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "package": "npm run build && electron-builder --win",
+    "package-dir": "npm run build && electron-builder --win --dir",
+    "dist": "npm run build && electron-builder --win --publish never",
+    "release": "npm run build && electron-builder --win --publish always"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "electron-updater": "^6.1.8",
+    "lucide-react": "^0.323.0",
+    "plotly.js": "^2.29.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-plotly.js": "^2.6.0",
+    "react-router-dom": "^6.22.0",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^28.2.1",
+    "electron-builder": "^24.12.0",
+    "wait-on": "^7.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "build": {
+    "appId": "com.bioinfocamp.automl",
+    "productName": "Bioinformatics AutoML Studio",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "extends": null,
+    "publish": {
+      "provider": "github",
+      "owner": "se7en69",
+      "repo": "Bioinformatics_Automl_Studio",
+      "releaseType": "release"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico",
+      "publisherName": "Abdul Rehman Ikram"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Bioinformatics AutoML Studio"
+    },
+    "files": [
+      "build/**/*",
+      "electron.js",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "../backend/dist/backend",
+        "to": "backend",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/**/*.node"
+    ]
+  }
+}
